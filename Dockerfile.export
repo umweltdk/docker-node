@@ -1,0 +1,4 @@
+FROM umweltdk/node-builder-base:0.12
+MAINTAINER Brian Olsen <bro@lisberg.dk>
+
+ONBUILD ADD slug.tgz /usr/src/app
