@@ -1,4 +1,4 @@
-# Source of griff/node-builder docker image
+# Source of umweltdk/node-builder docker image
 
 A simple docker image that supports building testing and exporting a zip
 suitable for deploy to elastic beanstalk.
@@ -8,7 +8,7 @@ suitable for deploy to elastic beanstalk.
 Create a Dockerfile in your Node.js app project
 
 ```
-FROM griff/node-build:0.12
+FROM umweltdk/node-build:0.12
 # replace this with your application's default port
 EXPOSE 8888
 ````
