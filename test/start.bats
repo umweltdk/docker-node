@@ -40,6 +40,7 @@ teardown() {
     sleep 1
     retry=$(($retry + 1))
   done
+  docker stop $BATS_TEST_NAME
   [ "$status" -eq 0 ]
   [ "$output" = "OK" ]
 }
