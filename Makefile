@@ -28,7 +28,7 @@ dist/Dockerfile.onbuild.%: Dockerfile.onbuild | dist
 
 dist/Dockerfile.onbuild-bower.%: Dockerfile.onbuild-bower | dist
 	cp $< $@.tmp
-	sed -E -i '' 's/^(FROM .+:).*/\1$*/;' "$@.tmp"
+	sed -E -i 's/^(FROM .+:).*/\1$*/;' "$@.tmp"
 	mv $@.tmp $@
 
 
