@@ -9,7 +9,7 @@ teardown() {
 }
 
 @test "missing start script returns error" {
-  docker build --rm -t $BATS_TEST_NAME $FIXTURE_ROOT/no-start-script
+  docker build --rm -t $BATS_TEST_NAME "$(fixture no-start-script)"
 
   run docker run --name $BATS_TEST_NAME $BATS_TEST_NAME
   echo -e "$output"
@@ -17,7 +17,7 @@ teardown() {
 }
 
 @test "failing start script returns error" {
-  docker build --rm -t $BATS_TEST_NAME $FIXTURE_ROOT/failing-start-script
+  docker build --rm -t $BATS_TEST_NAME "$(fixture failing-start-script)"
 
   run docker run --name $BATS_TEST_NAME $BATS_TEST_NAME
   echo -e "$output"
@@ -25,9 +25,10 @@ teardown() {
 }
 
 @test "running server returns ok" {
-  docker build --rm -t $BATS_TEST_NAME $FIXTURE_ROOT/ok-start-script
+  docker build --rm -t $BATS_TEST_NAME "$(fixture ok-start-script)"
   
   docker run --name $BATS_TEST_NAME $BATS_TEST_NAME &
+  docker pull buildpack-deps:curl
 
   local retry=0;
   while [ "$retry" -lt 5 ]; do

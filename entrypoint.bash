@@ -55,26 +55,6 @@ case "$1" in
     fi
     ;;
 
-  eb-export)
-    eb_export_path=/tmp/eb-export
-
-    mkdir $eb_export_path
-    make_slug "$build_root" "$eb_export_path/slug.tgz"
-
-    if [[ -f "$build_root/Dockerrun.aws.json" ]]; then
-      cp $build_root/Dockerrun.aws.json $eb_export_path
-    fi
-
-    if [[ -f "$build_root/Dockerfile.export" ]]; then
-      cp $build_root/Dockerfile.export $eb_export_path/Dockerfile
-    else
-      echo "FROM griff/node-builder-export:0.12" > $eb_export_path/Dockerfile
-    fi
-
-    cd $eb_export_path
-    zip -r - .
-    ;;
-
   *)
     exec "$@"
     ;;

@@ -1,22 +1,49 @@
+node_versions := 0.12 4.1
+fullVersion = $(1).$(shell curl -sSL --compressed 'http://nodejs.org/dist' | grep '<a href="v'"$(1)." | sed -E 's!.*<a href="v([^"/]+)/?".*!\1!' | cut -f 3 -d . | sort -n | tail -1)
 
-test_files := $(wildcard test/*.bats)
+all_versions := latest 4 $(node_versions) $(foreach version,$(node_versions),$(call fullVersion,$(version)))
 
-.PHONY: build test
+tests := $(basename $(notdir $(wildcard test/*.bats)))
 
-build:
-	docker build -t umweltdk/node-builder-base:0.12 base
-	docker build -t umweltdk/node-builder:0.12 -f Dockerfile.default .
-	docker build -t umweltdk/node-builder-bower:0.12 -f Dockerfile.bower .
-	docker build -t umweltdk/node-builder-export:0.12 -f Dockerfile.export .
+.PHONY: build test clean
 
-push:
-	docker push umweltdk/node-builder-base:0.12
-	docker push umweltdk/node-builder:0.12
-	docker push umweltdk/node-builder-bower:0.12
-	docker push umweltdk/node-builder-export:0.12
+build: $(foreach version,$(all_versions),build-$(version))
+test: $(foreach version,$(all_versions),test-all-$(version))
+push: $(foreach version,$(all_versions),push-$(version))
+clean:
+	rm -rf dist test/tmp
 
-test: build
-	bats/bin/bats test/*.bats
+dist:
+	mkdir -p dist
 
-$(test_files): %.bats: build
-	bats/bin/bats $@
+dist/Dockerfile.base.%: Dockerfile | dist
+	cp $< $@.tmp
+	sed -E -i '' 's/^(FROM .+:).*/\1$*/;' "$@.tmp"
+	mv $@.tmp $@
+
+dist/Dockerfile.onbuild.%: Dockerfile.onbuild | dist
+	cp $< $@.tmp
+	sed -E -i '' 's/^(FROM .+:).*/\1$*/;' "$@.tmp"
+	mv $@.tmp $@
+
+dist/Dockerfile.onbuild-bower.%: Dockerfile.onbuild-bower | dist
+	cp $< $@.tmp
+	sed -E -i '' 's/^(FROM .+:).*/\1$*/;' "$@.tmp"
+	mv $@.tmp $@
+
+
+build-%: dist/Dockerfile.base.% dist/Dockerfile.onbuild.% dist/Dockerfile.onbuild-bower.%
+	docker build --pull -t umweltdk/node:$* -f dist/Dockerfile.base.$* .
+	docker build -t umweltdk/node:$(if $(subst latest,,$*),$*-,)onbuild -f dist/Dockerfile.onbuild.$* .
+	docker build -t umweltdk/node:$(if $(subst latest,,$*),$*-,)onbuild-bower -f dist/Dockerfile.onbuild-bower.$* .
+
+push-%:
+	docker push umweltdk/node:$*
+	docker push umweltdk/node:$(if $(subst latest,,$*),$*-,)onbuild
+	docker push umweltdk/node:$(if $(subst latest,,$*),$*-,)onbuild-bower
+
+test-all-%:
+	NODE_VERSION=$* bats/bin/bats test/*.bats
+
+$(foreach test,$(tests),run-test-$(test)-%):
+	NODE_VERSION=$* bats/bin/bats test/$(subst -$*,,$(subst run-test-,,$@)).bats

@@ -1,4 +1,4 @@
-FROM umweltdk/node-builder:0.12
+FROM umweltdk/node:0.12-onbuild
 USER root
 RUN  cp -R /usr/src/app /usr/src/app-copy \
   && rm -r /usr/src/app \

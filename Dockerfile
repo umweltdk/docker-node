@@ -10,7 +10,7 @@ RUN apt-get update && \
     curl -L --silent -o /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && \
     chmod a+x /usr/local/bin/jq
 WORKDIR /usr/src/app
-COPY . /usr/src/builder
+COPY entrypoint.bash /usr/src/builder/entrypoint.bash
 ENTRYPOINT ["/usr/src/builder/entrypoint.bash"]
 CMD [ "start" ]
 USER app

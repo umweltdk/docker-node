@@ -1,2 +1,2 @@
-FROM umweltdk/node-builder-bower:0.12
+FROM umweltdk/node:0.12-onbuild-bower
 EXPOSE 8080
