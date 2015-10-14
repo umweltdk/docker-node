@@ -16,10 +16,17 @@ env:
   - NODE_VERSION=0.12.7
   - NODE_VERSION=4
   - NODE_VERSION=4.1
-  - NODE_VERSION=4.1.1
+  - NODE_VERSION=4.1.2
   - NODE_VERSION=4.2
-  - NODE_VERSION=4.2.0
+  - NODE_VERSION=4.2.1
 
 script:
   - make build-$NODE_VERSION
   - make test-all-$NODE_VERSION
+
+deploy:
+  provider: script
+  script: docker login -e $DOCKER_EMAIL -u $DOCKER_USERNAME -p $DOCKER_PASSWORD && make push-$NODE_VERSION
+  on:
+    repo: 'umweltdk/docker-node'
+    branch: master
