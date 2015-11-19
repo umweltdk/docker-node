@@ -5,8 +5,9 @@ all_versions := latest 4 $(node_versions) $(foreach version,$(node_versions),$(c
 
 tests := $(basename $(notdir $(wildcard test/*.bats)))
 
-.PHONY: build test clean
+.PHONY: build test clean default
 
+default: build test
 build: $(foreach version,$(all_versions),build-$(version))
 test: $(foreach version,$(all_versions),test-all-$(version))
 push: $(foreach version,$(all_versions),push-$(version))
