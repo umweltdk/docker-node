@@ -1,13 +1,7 @@
 FROM umweltdk/node:0.12
 
 ONBUILD COPY package.json /usr/src/app/
-ONBUILD RUN npm install
+ONBUILD RUN npm install --unsafe-perm
 
 ONBUILD COPY . /usr/src/app/
-ONBUILD USER root
-ONBUILD RUN  cp -R /usr/src/app /usr/src/app-copy \
-  && rm -r /usr/src/app \
-  && mv /usr/src/app-copy /usr/src/app \
-  && chown -R app:app /usr/src/app
-ONBUILD USER app
 ONBUILD RUN ! jq -e .scripts.build package.json > /dev/null || npm run build

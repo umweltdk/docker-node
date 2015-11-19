@@ -13,5 +13,4 @@ WORKDIR /usr/src/app
 COPY entrypoint.bash /usr/src/builder/entrypoint.bash
 ENTRYPOINT ["/usr/src/builder/entrypoint.bash"]
 CMD [ "start" ]
-USER app
 

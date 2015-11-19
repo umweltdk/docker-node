@@ -11,6 +11,10 @@ fixtures build
   ! docker build --rm "$(fixture missing-package-json)"
 }
 
+@test "fails to build with failing postinstall" {
+  ! docker build --rm "$(fixture failing-postinstall)"
+}
+
 @test "fails to build with missing bower dependency" {
   ! docker build --rm "$(fixture missing-bower-dependency)"
 }
@@ -21,6 +25,10 @@ fixtures build
 
 @test "fails to build with failing build script" {
   ! docker build --rm "$(fixture failing-build-script)"
+}
+
+@test "succeeds building with postinstall" {
+  docker build --rm "$(fixture ok-postinstall)"
 }
 
 @test "succeeds in building with missing build script" {
