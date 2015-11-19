@@ -19,17 +19,20 @@ dist:
 
 dist/Dockerfile.base.%: Dockerfile | dist
 	cp $< $@.tmp
-	sed -E -i 's/^(FROM .+:).*/\1$*/;' "$@.tmp"
+	sed -E -i.bak 's/^(FROM .+:).*/\1$*/;' "$@.tmp"
+	rm "$@.tmp.bak"
 	mv $@.tmp $@
 
 dist/Dockerfile.onbuild.%: Dockerfile.onbuild | dist
 	cp $< $@.tmp
-	sed -E -i 's/^(FROM .+:).*/\1$*/;' "$@.tmp"
+	sed -E -i.bak 's/^(FROM .+:).*/\1$*/;' "$@.tmp"
+	rm "$@.tmp.bak"
 	mv $@.tmp $@
 
 dist/Dockerfile.onbuild-bower.%: Dockerfile.onbuild-bower | dist
 	cp $< $@.tmp
-	sed -E -i 's/^(FROM .+:).*/\1$*/;' "$@.tmp"
+	sed -E -i.bak 's/^(FROM .+:).*/\1$*/;' "$@.tmp"
+	rm "$@.tmp.bak"
 	mv $@.tmp $@
 
 

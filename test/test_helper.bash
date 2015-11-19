@@ -10,9 +10,11 @@ fixture() {
   rm -rf "$FIXTURE_TMP_ROOT/$1/"
   cp -R "$FIXTURE_ROOT/$1/" "$FIXTURE_TMP_ROOT/$1/"
   if [ "${NODE_VERSION}" == "latest" ]; then
-    sed -E -i "s/^(FROM .+:).+onbuild(-bower)?/\1onbuild\2/;" "$FIXTURE_TMP_ROOT/$1/Dockerfile"
+    sed -E -i.bak "s/^(FROM .+:).+onbuild(-bower)?/\1onbuild\2/;" "$FIXTURE_TMP_ROOT/$1/Dockerfile"
+    rm "$FIXTURE_TMP_ROOT/$1/Dockerfile.bak"
   else
-    sed -E -i "s/^(FROM .+:).+-onbuild(-bower)?/\1${NODE_VERSION}-onbuild\2/;" "$FIXTURE_TMP_ROOT/$1/Dockerfile"
+    sed -E -i.bak "s/^(FROM .+:).+-onbuild(-bower)?/\1${NODE_VERSION}-onbuild\2/;" "$FIXTURE_TMP_ROOT/$1/Dockerfile"
+    rm "$FIXTURE_TMP_ROOT/$1/Dockerfile.bak"
   fi
   echo "$FIXTURE_TMP_ROOT/$1"
 }
