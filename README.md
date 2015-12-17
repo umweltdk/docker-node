@@ -6,15 +6,16 @@ A simple docker image that supports building, testing and exporting the build co
 
 # Supported tags and respective `Dockerfile` links
 
-- [`0.12.7`, `0.12`, `0` (*Dockerfile*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile)
-- [`0.12.7-onbuild`, `0.12-onbuild` (*Dockerfile.onbuild*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild)
-- [`0.12.7-onbuild-bower`, `0.12-onbuild-bower` (*Dockerfile.onbuild-bower*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild-bower)
-- [`4.1.2`, `4.1` (*Dockerfile*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile)
-- [`4.1.2-onbuild`, `4.1-onbuild` (*4.1/onbuild/Dockerfile*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild)
-- [`4.1.2-onbuild-bower`, `4.1-onbuild-bower` (*Dockerfile.onbuild-bower*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild-bower)
-- [`4.2.1`, `4.2`, `4`, `latest` (*Dockerfile*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile)
-- [`4.2.1-onbuild`, `4.2-onbuild`, `4-onbuild`, `onbuild` (*4.1/onbuild/Dockerfile*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild)
-- [`4.2.1-onbuild-bower`, `4.2-onbuild-bower`, `4-onbuild-bower`, `onbuild-bower` (*Dockerfile.onbuild-bower*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild-bower)
+- [`0.12.9`, `0.12`, `0` (*Dockerfile*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile)
+- [`0.12.9-onbuild`, `0.12-onbuild` (*Dockerfile.onbuild*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild)
+- [`0.12.9-onbuild-bower`, `0.12-onbuild-bower` (*Dockerfile.onbuild-bower*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild-bower)
+master/Dockerfile.onbuild-bower)
+- [`4.2.3`, `4.2`, `4`, `latest` (*Dockerfile*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile)
+- [`4.2.3-onbuild`, `4.2-onbuild`, `4-onbuild`, `onbuild` (*Dockerfile.onbuild*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild)
+- [`4.2.3-onbuild-bower`, `4.2-onbuild-bower`, `4-onbuild-bower`, `onbuild-bower` (*Dockerfile.onbuild-bower*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild-bower)
+- [`5.2.0`, `5.2`, `5`, `latest` (*Dockerfile*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile)
+- [`5.2.0-onbuild`, `5.2-onbuild`, `5-onbuild`, `onbuild` (*Dockerfile.onbuild*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild)
+- [`5.2.0-onbuild-bower`, `5.2-onbuild-bower`, `5-onbuild-bower`, `onbuild-bower` (*Dockerfile.onbuild-bower*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild-bower)
 
 ## How to use this image
 

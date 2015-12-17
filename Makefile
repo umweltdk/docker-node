@@ -1,4 +1,4 @@
-node_versions := 0.12 4.1 4.2 5.0
+node_versions := 0.12 4.2 5.2
 fullVersion = $(1).$(shell curl -sSL --compressed 'http://nodejs.org/dist' | grep '<a href="v'"$(1)." | sed -E 's!.*<a href="v([^"/]+)/?".*!\1!' | cut -f 3 -d . | sort -n | tail -1)
 
 all_versions := latest 4 5 $(node_versions) $(foreach version,$(node_versions),$(call fullVersion,$(version)))
