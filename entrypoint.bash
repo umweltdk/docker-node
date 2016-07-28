@@ -21,16 +21,16 @@ make_slug() {
 case "$1" in
   build)
     if jq -e .scripts.build package.json > /dev/null; then
-      npm run build
+      exec dumb-init npm run build
     fi
     ;;
 
   test)
-    exec npm test
+    exec dumb-init npm test
     ;;
 
   start)
-    exec npm start
+    exec dumb-init npm start
     ;;
 
   slug)
@@ -56,6 +56,6 @@ case "$1" in
     ;;
 
   *)
-    exec "$@"
+    exec dumb-init "$@"
     ;;
 esac
