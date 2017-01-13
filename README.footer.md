@@ -1,24 +1,3 @@
-# umweltdk/node docker image [![travis](https://travis-ci.org/umweltdk/docker-node.svg?branch=master)](https://travis-ci.org/umweltdk/docker-node)
-
-A simple docker image that supports building, testing and exporting the build content as a tar.
-
-# Supported tags and respective `Dockerfile` links
-
-- [`0.12`, `0.12.18`,  (*Dockerfile*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile)
-- [`0.12-onbuild`, `0.12.18-onbuild`,  (*Dockerfile.onbuild*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild)
-- [`0.12-onbuild-bower`, `0.12.18-onbuild-bower`,  (*Dockerfile.onbuild-bower*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild-bower)
-- [`4`, `4.7`, `4.7.2`,  (*Dockerfile*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile)
-- [`4-onbuild`, `4.7-onbuild`, `4.7.2-onbuild`,  (*Dockerfile.onbuild*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild)
-- [`4-onbuild-bower`, `4.7-onbuild-bower`, `4.7.2-onbuild-bower`,  (*Dockerfile.onbuild-bower*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild-bower)
-- [`5`, `5.12`, `5.12.0`,  (*Dockerfile*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile)
-- [`5-onbuild`, `5.12-onbuild`, `5.12.0-onbuild`,  (*Dockerfile.onbuild*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild)
-- [`5-onbuild-bower`, `5.12-onbuild-bower`, `5.12.0-onbuild-bower`,  (*Dockerfile.onbuild-bower*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild-bower)
-- [`6`, `6.9`, `6.9.4`, `lts`,  (*Dockerfile*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile)
-- [`6-onbuild`, `6.9-onbuild`, `6.9.4-onbuild`, `lts-onbuild`,  (*Dockerfile.onbuild*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild)
-- [`6-onbuild-bower`, `6.9-onbuild-bower`, `6.9.4-onbuild-bower`, `lts-onbuild-bower`,  (*Dockerfile.onbuild-bower*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild-bower)
-- [`7`, `7.4`, `7.4.0`, `latest`,  (*Dockerfile*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile)
-- [`7-onbuild`, `7.4-onbuild`, `7.4.0-onbuild`, `onbuild`,  (*Dockerfile.onbuild*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild)
-- [`7-onbuild-bower`, `7.4-onbuild-bower`, `7.4.0-onbuild-bower`, `onbuild-bower`,  (*Dockerfile.onbuild-bower*)](https://github.com/umweltdk/docker-node/blob/master/Dockerfile.onbuild-bower)
 
 ## How to use this image
 
