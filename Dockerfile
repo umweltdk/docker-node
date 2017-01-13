@@ -1,8 +1,12 @@
 FROM node:0.12
 MAINTAINER Brian Olsen <bro@lisberg.dk>
 
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y zip && \
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y zip apt-transport-https && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y yarn && \
     apt-get clean && \
     mkdir -p /usr/src/app /usr/src/builder && \
     useradd --user-group --system --home-dir /usr/src/app app && \
