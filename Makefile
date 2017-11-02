@@ -1,7 +1,8 @@
 image := umweltdk/node
 node_versions := 0.12 4 5 6 7 8 9
-node_old1_versions := 0.12 4 5
-node_old2_versions := 6 7
+node_old1_versions := 0.12 4
+node_old2_versions := 5 6
+node_old3_versions := 7
 node_latest_version := $(shell curl -sSL --compressed "http://nodejs.org/dist/latest" | grep '<a href="node-v'"$1." | sed -E 's!.*<a href="node-v([0-9.]+)-.*".*!\1!' | head -1)
 node_lts_version := $(shell curl -sSL --compressed "https://nodejs.org/en/" | egrep '<a .* title=".* LTS"' | sed -E 's!.*data-version="v([0-9.]+)".*!\1!')
 
@@ -52,6 +53,9 @@ build-old1:
 
 build-old2:
 	$(MAKE) $(foreach node,$(node_old2_versions),build-$(node))
+
+build-old3:
+	$(MAKE) $(foreach node,$(node_old3_versions),build-$(node))
 
 $(foreach node,$(node_versions),build-$(node)): | dist
 	$(MAKE) build-$(call nodeFullVersion,$(subst build-,,$@))
@@ -107,6 +111,9 @@ push-old1:
 push-old2: 
 	$(MAKE) $(foreach node,$(node_old2_versions),push-$(node))
 
+push-old3: 
+	$(MAKE) $(foreach node,$(node_old3_versions),push-$(node))
+
 $(foreach node,$(node_versions),push-$(node)):
 	$(MAKE) real-push-$(subst push-,,$@)
 	$(MAKE) push-$(call nodeFullVersion,$(subst push-,,$@))
@@ -128,6 +135,9 @@ test-all-old1:
 
 test-all-old2:
 	$(MAKE) $(foreach node,$(node_old2_versions),test-all-$(node))
+
+test-all-old3:
+	$(MAKE) $(foreach node,$(node_old3_versions),test-all-$(node))
 
 $(foreach node,$(node_versions),test-all-$(node)):
 	$(MAKE) real-test-all-$(subst test-all-,,$@)
