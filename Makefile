@@ -1,8 +1,7 @@
 image := umweltdk/node
 node_versions := 0.12 4 5 6 7 8 9
 node_old1_versions := 0.12 4
-node_old2_versions := 5 6
-node_old3_versions := 7
+node_old2_versions := 5 6 7
 node_latest_version := $(shell curl -sSL --compressed "http://nodejs.org/dist/latest" | grep '<a href="node-v'"$1." | sed -E 's!.*<a href="node-v([0-9.]+)-.*".*!\1!' | head -1)
 node_lts_version := $(shell curl -sSL --compressed "https://nodejs.org/en/" | egrep '<a .* title=".* LTS"' | sed -E 's!.*data-version="v([0-9.]+)".*!\1!')
 
