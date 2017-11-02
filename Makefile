@@ -117,7 +117,7 @@ push-old3:
 $(foreach node,$(node_versions),push-$(node)):
 	$(MAKE) real-push-$(subst push-,,$@)
 	$(MAKE) push-$(call nodeFullVersion,$(subst push-,,$@))
-	[[ "$(subst push-,,$@)" == "0.12" ]] || $(MAKE) push-$(subst $(space),.,$(wordlist 1,2,$(subst ., ,$(call nodeFullVersion,$(subst push-,,$@)))))
+	[ "$(subst push-,,$@)" == "0.12" ] || $(MAKE) push-$(subst $(space),.,$(wordlist 1,2,$(subst ., ,$(call nodeFullVersion,$(subst push-,,$@)))))
 
 push-%:
 	$(MAKE) real-push-$*
@@ -142,7 +142,7 @@ test-all-old3:
 $(foreach node,$(node_versions),test-all-$(node)):
 	$(MAKE) real-test-all-$(subst test-all-,,$@)
 	$(MAKE) test-all-$(call nodeFullVersion,$(subst test-all-,,$@))
-	[[ "$(subst test-all-,,$@)" == "0.12" ]] || $(MAKE) test-all-$(subst $(space),.,$(wordlist 1,2,$(subst ., ,$(call nodeFullVersion,$(subst test-all-,,$@)))))
+	[ "$(subst test-all-,,$@)" == "0.12" ] || $(MAKE) test-all-$(subst $(space),.,$(wordlist 1,2,$(subst ., ,$(call nodeFullVersion,$(subst test-all-,,$@)))))
 
 test-all-%:
 	$(MAKE) real-test-all-$*
