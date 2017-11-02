@@ -6,7 +6,8 @@ services:
 env:
   - NODE_VERSION=latest
   - NODE_VERSION=lts
-  - NODE_VERSION=old
+  - NODE_VERSION=old1
+  - NODE_VERSION=old2
   - NODE_VERSION=4.3.2
   - NODE_VERSION=8.9.0
 

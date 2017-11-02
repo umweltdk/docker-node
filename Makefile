@@ -1,5 +1,7 @@
 image := umweltdk/node
-node_versions := 0.12 4 5 6 7
+node_versions := 0.12 4 5 6 7 8 9
+node_old1_versions := 0.12 4 5
+node_old2_versions := 6 7
 node_latest_version := $(shell curl -sSL --compressed "http://nodejs.org/dist/latest" | grep '<a href="node-v'"$1." | sed -E 's!.*<a href="node-v([0-9.]+)-.*".*!\1!' | head -1)
 node_lts_version := $(shell curl -sSL --compressed "https://nodejs.org/en/" | egrep '<a .* title=".* LTS"' | sed -E 's!.*data-version="v([0-9.]+)".*!\1!')
 
@@ -11,7 +13,6 @@ nodeMajorVersion = $(subst $(space),.,$(wordlist 1,$(if $(subst 0,,$(word 1,$(su
 nodeVersion = $(word 2,$(subst -, ,$(1)))
 node_latest_major := $(call nodeMajorVersion,$(node_latest_version))
 node_lts_major := $(call nodeMajorVersion,$(node_lts_version))
-node_old_versions := $(filter-out $(node_latest_major) $(node_lts_major),$(node_versions))
 
 tests := $(basename $(notdir $(wildcard test/*.bats)))
 
@@ -46,8 +47,11 @@ build-lts: build-$(node_lts_version) build-$(node_lts_major) | dist
 	echo lts-onbuild >> dist/v$(node_lts_version)/images-onbuild.txt
 	echo lts-onbuild-bower >> dist/v$(node_lts_version)/images-onbuild-bower.txt
 
-build-old:
-	$(MAKE) $(foreach node,$(node_old_versions),build-$(node))
+build-old1:
+	$(MAKE) $(foreach node,$(node_old1_versions),build-$(node))
+
+build-old2:
+	$(MAKE) $(foreach node,$(node_old2_versions),build-$(node))
 
 $(foreach node,$(node_versions),build-$(node)): | dist
 	$(MAKE) build-$(call nodeFullVersion,$(subst build-,,$@))
@@ -97,8 +101,11 @@ push-latest: push-$(node_latest_major)
 
 push-lts: push-$(node_lts_major)
 
-push-old: 
-	$(MAKE) $(foreach node,$(node_old_versions),push-$(node))
+push-old1: 
+	$(MAKE) $(foreach node,$(node_old1_versions),push-$(node))
+
+push-old2: 
+	$(MAKE) $(foreach node,$(node_old2_versions),push-$(node))
 
 $(foreach node,$(node_versions),push-$(node)):
 	$(MAKE) real-push-$(subst push-,,$@)
@@ -116,8 +123,11 @@ real-push-%:
 test-all-latest: test-all-$(node_latest_major)
 test-all-lts: test-all-$(node_lts_major)
 
-test-all-old:
-	$(MAKE) $(foreach node,$(node_old_versions),test-all-$(node))
+test-all-old1:
+	$(MAKE) $(foreach node,$(node_old1_versions),test-all-$(node))
+
+test-all-old2:
+	$(MAKE) $(foreach node,$(node_old2_versions),test-all-$(node))
 
 $(foreach node,$(node_versions),test-all-$(node)):
 	$(MAKE) real-test-all-$(subst test-all-,,$@)
