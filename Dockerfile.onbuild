@@ -1,6 +1,6 @@
 FROM umweltdk/node:0.12
 
-ONBUILD COPY package.json /usr/src/app/
+ONBUILD COPY package.json *ackage-lock.json /usr/src/app/
 ONBUILD RUN npm install --unsafe-perm
 
 ONBUILD COPY . /usr/src/app/
